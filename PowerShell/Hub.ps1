@@ -1,7 +1,7 @@
 # @file Git.ps1
-*
-* @author Danko Adamczyk <dankoadamczyk@me.com>
-* @version 1.0.0
+#
+# @author Danko Adamczyk <dankoadamczyk@me.com>
+# @version 1.0.0
 
 # Ask a question.
 
