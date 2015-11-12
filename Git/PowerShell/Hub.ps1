@@ -32,6 +32,10 @@ function ask{
 
 function pr{
 
+    param(
+		[String] $Base = 'develop'
+	)
+
     if((ask('Do you want to create an Pull Request based on an existing issue?')) -eq 'y'){
 
         hub issue;
@@ -50,7 +54,7 @@ function pr{
     }
     elseif((ask('Do you want to create a new Pull Request?')) -eq 'y'){
 
-        hub pull-request -b develop
+        hub pull-request -b $Base
     }
 
     if((ask('Do you want to view the branch on GitHub??')) -eq 'y'){
