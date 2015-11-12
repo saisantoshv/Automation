@@ -1,6 +1,4 @@
 [alias]
-  p = pull --ff-only
-  pr = pull --ff-only --rebase
-  lga = log --graph --pretty=format:'%C(bold red)%h%C(reset) - %s %C(bold yellow)@%an, %ar %C(bold cyan)%d%C(reset)'
-  lg = log --graph --pretty=format:'%C(bold red)%h%C(reset) - %s %C(bold yellow)@%an, %ar %C(bold cyan)%d%C(reset)' -10
-  tree = log --pretty=format:\"%C(auto) %h %ad %d %s [%an]\" --graph --date=short
+  p     = pull --ff-only
+  pr    = pull --ff-only --rebase
+  tree  = log --graph --pretty=format:\"%C(cyan)%h %C(reset)%s%C(auto)%d %C(dim white)%an, %ar \"
