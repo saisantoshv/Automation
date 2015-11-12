@@ -1,20 +1,3 @@
-# @file Git.ps1
-#
-# @author Danko Adamczyk <dankoadamczyk@me.com>
-# @version 1.0.0
+#Deprecated on 12-11-2015, these files can be removed after the next release.
 
-# Easily create a branch and push it to the origin.
-
-function cb(){
-
-    param(
-		[Parameter(Mandatory = $TRUE)] [ValidateNotNullOrEmpty()]
-			[String] $Branch,
-		[String] $Base = 'develop'
-	)   
-
-    git co $Base
-    git pull
-    git co -b $Branch
-    git push --set-upstream origin $Branch
-}
+Write-Host "@deprecated, please include /Git/PowerShell/Git.ps1 directly" -ForegroundColor Yellow
