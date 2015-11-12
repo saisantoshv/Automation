@@ -2,6 +2,7 @@
 #
 # @author Danko Adamczyk <dankoadamczyk@me.com>
 # @version 1.0.0
+# For these commands you need to have https://hub.github.com/ installed.
 
 # Ask a question.
 
