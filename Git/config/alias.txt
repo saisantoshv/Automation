@@ -1,0 +1,2 @@
+[alias]	
+  tree = log --pretty=format:\"%C(auto) %h %ad %d %s [%an]\" --graph --date=short
