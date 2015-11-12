@@ -1,4 +1,4 @@
-# @file Directoy.ps1
+# @file Directory.ps1
 #
 # @author Danko Adamczyk <dankoadamczyk@me.com>
 # @version 1.0.0
@@ -7,5 +7,5 @@
 
 function getFolder(){
 
-    return Split-Path -leaf -path (Get-Location) + "\";
+    return Split-Path -leaf -path (Get-Location);
 }
