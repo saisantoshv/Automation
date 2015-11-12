@@ -7,5 +7,5 @@
 
 function getFolder(){
 
-    return Split-Path -leaf -path (Get-Location) + "\";
+    return Split-Path -leaf -path (Get-Location);
 }
