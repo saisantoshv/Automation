@@ -16,8 +16,8 @@ function ask{
 
     while($response -notin $Options){
         
-        $Choises = [string]::join("/", $Options)
-        $response = Read-Host -Prompt "$Question [$Choises default = $Default]"
+        $Choices = [string]::join("/", $Options)
+        $response = Read-Host -Prompt "$Question [$Choices default = $Default]"
 
         if($response -eq ''){
 
