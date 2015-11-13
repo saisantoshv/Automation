@@ -4,29 +4,7 @@
 # @version 1.0.0
 # For these commands you need to have https://hub.github.com/ installed.
 
-# Ask a question.
-
-function ask{
-
-    param(
-		[String] $Question = 'Do you want to continue?',
-        $Options = @('Y', 'n'),
-        $Default = 'n'
-	)
-
-    while($response -notin $Options){
-        
-        $Choices = [string]::join("/", $Options)
-        $response = Read-Host -Prompt "$Question [$Choices default = $Default]"
-
-        if($response -eq ''){
-
-            $response = $Default
-        }
-	}
-
-    return $response
-}
+. (Resolve-Path (Join-Path $PSScriptRoot "..\..\PowerShell\Prompts.ps1"))
 
 # Create a Pull Request.
 
