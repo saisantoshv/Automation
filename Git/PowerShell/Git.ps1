@@ -10,10 +10,14 @@ function cb(){
     param(
 		[Parameter(Mandatory = $TRUE)] [ValidateNotNullOrEmpty()]
 			[String] $Branch,
-		[String] $Base = 'develop'
+		[String] $Base = ''
 	)   
 
-    git co $Base
+    if($Base -ne ''){
+
+        git co $Base
+    }
+
     git pull
     git co -b $Branch
     git push --set-upstream origin $Branch
