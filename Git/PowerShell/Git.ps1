@@ -3,22 +3,25 @@
 # @author Danko Adamczyk <dankoadamczyk@me.com>
 # @version 1.0.0
 
-# Easily create a branch and push it to the origin.
+<#
+.SYNOPSIS
+Easily create a branch and push it to the origin.
+#>
 
 function cb(){
 
     param(
 		[Parameter(Mandatory = $TRUE)] [ValidateNotNullOrEmpty()]
-			[String] $Branch,
-		[String] $Base = ''
+			[String] $NewBranch,
+		[String] $BaseBranch = ''
 	)   
 
-    if($Base -ne ''){
+    if($BaseBranch -ne ''){
 
-        git co $Base
+        git co $BaseBranch
     }
 
     git pull
-    git co -b $Branch
-    git push --set-upstream origin $Branch
+    git co -b $NewBranch
+    git push --set-upstream origin $NewBranch
 }
