@@ -5,6 +5,17 @@
 
 # Ask a question.
 
+<#
+.SYNOPSIS
+Ask a question and return response when it matches to one of the @Options.
+
+.DESCRIPTION
+ask 'Do you want to continue?' @('Y', 'n') 'n'
+Known bug. The @Default param does not seem to work..
+
+.NOTES
+#>
+
 function ask{
 
     param(

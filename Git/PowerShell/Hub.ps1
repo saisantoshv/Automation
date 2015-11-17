@@ -11,6 +11,7 @@
 Create a pull request from the active branch.
 
 .DESCRIPTION
+pr develop
 For these commands you need to have the Hub library installed
 
 .LINK
