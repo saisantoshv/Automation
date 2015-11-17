@@ -1,4 +1,4 @@
-# @file Git.ps1
+# @file Hub.ps1
 #
 # @author Danko Adamczyk <dankoadamczyk@me.com>
 # @version 1.0.0
@@ -6,12 +6,21 @@
 
 . (Resolve-Path (Join-Path $PSScriptRoot "..\..\PowerShell\Prompts.ps1"))
 
-# Create a Pull Request.
+<#
+.SYNOPSIS
+Create a pull request from the active branch.
+
+.DESCRIPTION
+For these commands you need to have the Hub library installed
+
+.LINK
+https://hub.github.com/
+#>
 
 function pr{
 
     param(
-		[String] $Base = 'develop'
+		[String] $BaseBranch = 'develop'
 	)
 
     if((ask('Do you want to create an Pull Request based on an existing issue?')) -eq 'y'){
@@ -27,12 +36,12 @@ function pr{
 
         if ($issue -gt 0){
         
-            hub pull-request -b develop -i $Issue
+            hub pull-request -b $BaseBranch -i $Issue
         }
     }
     elseif((ask('Do you want to create a new Pull Request?')) -eq 'y'){
 
-        hub pull-request -b $Base
+        hub pull-request -b $BaseBranch
     }
 
     if((ask('Do you want to view the branch on GitHub??')) -eq 'y'){
