@@ -1,4 +1,4 @@
 [alias]
   p     = pull --ff-only
   pr    = pull --ff-only --rebase
-  tree  = log --graph --pretty=format:\"%C(cyan)%h %C(reset)%s%C(auto)%d %C(dim white)%an, %ar \"
+  tree  = log --graph --pretty=format:\"%C(cyan)%h%C(auto)%d %C(reset)%s %C(dim white)%an, %ar \"
