@@ -62,7 +62,7 @@ function Clean-Repo{
 
     $Folder = (Get-Item -Path ".\" -Verbose).BaseName;
 
-    '{0}: Starting to clean on branch {1}' -f $Folder, $branch | Write-Host -ForegroundColor White
+    "`r`n{0}: Starting to clean on branch {1}" -f $Folder, $branch | Write-Host -ForegroundColor White
 
         
     & git fetch --all 2>&1 | Out-Null
@@ -123,7 +123,7 @@ function Clean-Repos{
 		$branch = 'develop'
 	)
 
-    Get-ChildItem . | %{
+    Get-ChildItem | ?{ $_.PSIsContainer } | %{
 
         Push-Location $_.FullName;
         Clean-Repo -branch $branch
