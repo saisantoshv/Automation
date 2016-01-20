@@ -48,9 +48,7 @@ Clean this repository and remove already merged branches.
 
 function Clean-Repo{
 
-	param(
-		$branch = 'develop'
-	)
+	param($branch)
 
     & git status 2>&1 | Out-Null
 
@@ -62,7 +60,13 @@ function Clean-Repo{
 
     $Folder = (Get-Item -Path ".\" -Verbose).BaseName;
 
-    "`r`n{0}: Starting to clean on branch {1}" -f $Folder, $branch | Write-Host -ForegroundColor White
+    $branchname = 'current';
+    if($branch){
+        
+        $branchname = $branch
+    }
+
+    "`r`n{0}: Starting to clean on the {1} branch " -f $Folder, $branchname | Write-Host -ForegroundColor White
 
         
     & git fetch --all 2>&1 | Out-Null
@@ -73,18 +77,21 @@ function Clean-Repo{
         return
     }
 
-    & git checkout $branch 2>&1 | Out-Null
-    if($LastExitCode -ne 0){
-
-        '{0}: unable to checkout {1}. Investigate and re-run this script.' -f $Folder, $branch | Write-Host -ForegroundColor Red
-        Pop-Location
-        return
+    if($branch){
+        
+        & git checkout $branch 2>&1 | Out-Null
+        if($LastExitCode -ne 0){
+    
+            '{0}: unable to checkout {1}. Investigate and re-run this script.' -f $Folder, $branch | Write-Host -ForegroundColor Red
+            Pop-Location
+            return
+        }        
     }
 
     $Status = (& git status)
     $BranchStatus = $Status[1]
 
-    if($BranchStatus -like "Your branch is up-to-date with 'origin/$branch'."){
+    if($BranchStatus -like "Your branch is up-to-date with 'origin/*"){
 
         prune
         '{0}: {1}' -f $Folder, $BranchStatus | Write-Host -ForegroundColor Green
@@ -107,9 +114,18 @@ function Clean-Repo{
         Pop-Location
         return
     }
+    
+    if($BranchStatus -like "Your branch is up-to-date with 'origin/*"){
 
-    prune
-    '{0}: Done.' -f $Folder | Write-Host -ForegroundColor Green
+        prune
+        '{0}: {1}' -f $Folder, $BranchStatus | Write-Host -ForegroundColor Green
+    }    
+    else{
+        
+        '{0}: Done.' -f $Folder | Write-Host -ForegroundColor Green
+    }
+    
+    Pop-Location
 }
 
 <#
@@ -119,9 +135,7 @@ Iterate over all folders and call CleanRepo
 
 function Clean-Repos{
 
-	param(
-		$branch = 'develop'
-	)
+	param($branch)
 
     Get-ChildItem | ?{ $_.PSIsContainer } | %{
 
