@@ -68,6 +68,7 @@ function Clean-Repo{
 
     "`r`n{0}: Starting to clean on the {1} branch " -f $Folder, $branchname | Write-Host -ForegroundColor White
 
+    & git tag -d (git tag | grep -E '.') 2>&1 | Out-Null
         
     & git fetch --all 2>&1 | Out-Null
     if($LastExitCode -ne 0){
