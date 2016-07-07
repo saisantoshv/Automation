@@ -24,7 +24,7 @@ function pr{
 		[String] $BaseBranch = 'develop'
 	)
 
-    if((ask 'Do you want to create an Pull Request based on an existing issue?' @('Y', 'n') 'n') -eq 'y'){
+    if((ask 'Do you want to create a Pull Request based on an existing issue?' @('Y', 'n') 'n') -eq 'y'){
 
         hub issue;
 
