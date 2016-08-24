@@ -7,7 +7,6 @@
 .SYNOPSIS
 Easily create a branch and push it to the origin.
 #>
-
 function cb(){
 
     param(
@@ -31,13 +30,38 @@ function cb(){
 
 Prune the branches and delete already merged branches.
 #>
-
 function prune{
-    
+
     & git remote prune origin
 	& git branch --merged | ?{-not $_.trim().indexOf("*") -eq 0} | %{
         
         & git branch -d $_.trim()
+    }
+
+    # XXX: git remote prune origin does not delete the local branches.. pruneMissingRemote is needed for that.    
+    _pruneMissingRemote
+}
+
+<#
+.SYNOPSIS
+
+This will list all local branches with a upstream that is "gone".
+#>
+function _getBranchesWithMissingRemote{
+    
+    return & git branch -vv | grep ': gone' | cut -c 3- | awk '{ print $1 }';
+}
+
+<#
+.SYNOPSIS
+
+This will force delete all local branches with a upstream that is "gone".
+#>
+function _pruneMissingRemote{
+    
+    _getBranchesWithMissingRemote | %{
+    
+        & git branch -D $_.trim()
     }    
 }
 
@@ -45,7 +69,6 @@ function prune{
 .SYNOPSIS
 Clean this repository and remove already merged branches.
 #>
-
 function Clean-Repo{
 
 	param($branch)
@@ -70,6 +93,7 @@ function Clean-Repo{
 
     & git tag -d (git tag | grep -E '.') 2>&1 | Out-Null
         
+    # XXX: What about the -p flag to autmatically prune in this step?
     & git fetch --all 2>&1 | Out-Null
     if($LastExitCode -ne 0){
 
@@ -133,7 +157,6 @@ function Clean-Repo{
 .SYNOPSIS
 Iterate over all folders and call CleanRepo
 #>
-
 function Clean-Repos{
 
 	param($branch)
