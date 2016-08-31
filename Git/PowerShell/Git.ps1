@@ -39,8 +39,7 @@ function prune{
     }
 
     # XXX: git remote prune origin does not delete the local branches.. pruneMissingRemote is needed for that.
-    # XXX: There seems to be a bug with piping to awk.    
-    #_pruneMissingRemote
+    _pruneMissingRemote
 }
 
 <#
@@ -50,7 +49,10 @@ This will list all local branches with a upstream that is "gone".
 #>
 function _getBranchesWithMissingRemote{
     
-    return & git branch -vv | grep ': gone' | cut -c 3- | awk '{ print $1 }';
+    return & git branch -vv | grep ': gone' | cut -c 3- | %{
+        
+        ($_ -split ' ')[0]
+    };
 }
 
 <#
