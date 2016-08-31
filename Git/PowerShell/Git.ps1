@@ -38,8 +38,9 @@ function prune{
         & git branch -d $_.trim()
     }
 
-    # XXX: git remote prune origin does not delete the local branches.. pruneMissingRemote is needed for that.    
-    _pruneMissingRemote
+    # XXX: git remote prune origin does not delete the local branches.. pruneMissingRemote is needed for that.
+    # XXX: There seems to be a bug with piping to awk.    
+    #_pruneMissingRemote
 }
 
 <#
