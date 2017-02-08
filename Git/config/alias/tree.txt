@@ -1,0 +1,2 @@
+[alias]
+  tree  = log --graph --pretty=format:\"%C(cyan)%h%C(auto)%d %C(reset)%s %C(dim white)%an, %ar \"

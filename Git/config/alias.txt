@@ -1,4 +1,6 @@
-[alias]
-  p     = pull --ff-only
-  pr    = pull --ff-only --rebase
-  tree  = log --graph --pretty=format:\"%C(cyan)%h%C(auto)%d %C(reset)%s %C(dim white)%an, %ar \"
+[include]
+  path = alias/cb.txt
+  path = alias/co.txt
+  path = alias/p.txt
+  path = alias/pr.txt
+  path = alias/tree.txt

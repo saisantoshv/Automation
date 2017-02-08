@@ -1,0 +1,2 @@
+[alias]
+  pr    = pull --ff-only --rebase
