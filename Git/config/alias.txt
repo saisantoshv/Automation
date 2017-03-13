@@ -3,4 +3,5 @@
   path = alias/co.txt
   path = alias/p.txt
   path = alias/pr.txt
+  path = alias/prune-branches.txt
   path = alias/tree.txt
