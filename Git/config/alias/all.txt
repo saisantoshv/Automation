@@ -1,0 +1,2 @@
+[alias]
+	all = "!f() { ls | xargs -P10 -I{} git -C {} $@; }; f"
