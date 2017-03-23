@@ -1,5 +1,6 @@
 [alias]
   cb = "!f() { \
+    git pull --ff-only; \
     git checkout -b $1; \
      git push --set-upstream origin $1; \
   }; f"
